@@ -50,8 +50,10 @@ serve several. The goal still never lists what serves it.
 `river check` fails a `Serves:` naming a goal no package declares (`goal-unknown-parent`) and a live
 goal serving a withdrawn one (`goal-serves-withdrawn`); `river graph` draws the edges. **Cycles are
 fine:** goals often reinforce each other (honest data makes what you share worth reusing; sharing it
-lets others check it), so two goals may serve each other. A goal that a live goal serves counts as served, so a
-value cited only by goals is not counted unserved.
+lets others check it), so two goals may serve each other. **A goal is served when a requirement
+reaches it**, citing it or a goal that serves it, however many steps up: a value cited only by goals
+is not counted unserved, but a loop of goals no requirement reaches is. Unserved goals, like
+requirements citing no goal, are counted, never failed.
 
 ## Imported goals
 
