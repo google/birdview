@@ -33,9 +33,49 @@ Requirements cite goals by package-qualified ID in a `Goals:` field on each loca
 each composed item (included bullets in a composed package link to their source item rather than
 repeating `Goals:`). A goal never lists its requirements, so the two cannot drift apart.
 
-A goal nothing cites yet, and a requirement citing no goal, are both **counted, not rejected**.
+A goal nothing cites yet, and a requirement citing no goal, are both **counted, not rejected**. A
+live requirement or gradient citing a *withdrawn* goal is noted (`goal-withdrawn-cited`): re-cite
+the goal that replaced it.
 A brownfield project starts with the second; a goal added because the market moved starts with
 the first. Requiring either to arrive with the other attached produces invented ones.
+
+## Goals that serve goals
+
+**From River 2.1, a goal cites the goals it serves in `Serves:`**, as a gradient cites the goal it
+measures: `Serves: goals.shipReliably, orgvalues.respectTheUser`. A goal serving none is a **root**.
+Model a value (a principle nobody trades for gain and nobody finishes) as a root goal, usually
+imported from the organization, not as a new kind of item. It is a graph, not a tree: a goal may
+serve several. The goal still never lists what serves it.
+
+`river check` fails a `Serves:` naming a goal no package declares (`goal-unknown-parent`), a live
+goal serving a withdrawn one (`goal-serves-withdrawn`), and goals serving each other in a cycle
+(`goal-cycle`); `river graph` draws the edges. A goal that a live goal serves counts as served, so a
+value cited only by goals is not counted unserved.
+
+## Imported goals
+
+**Another module's goals are imported under `goals/imported/<origin>/<package>/`**, with a
+`PROVENANCE.md` like any imported source, and **named by the directory**: the file may keep its own
+module's `package goals`, so it is copied unedited, and its own `goals.<id>` citations read as
+`<package>.<id>`. Cite them as `<package>.<id>` from your goals' `Serves:`. The checker checks their
+structure and counts none of them: serving an imported goal is your choice, not an obligation, and
+nothing is composed from goals, since goals never gate.
+
+## Goal versions
+
+**Goals move on the planning cadence, ahead of requirements; River 2.1 versions them so the lag is
+visible.** Every goal has a line in `requirements/sums.md`. The goal set's owner approves it as a
+unit with `river approve --by <owner> goals` (only when named; approving packages never approves
+goals), recorded in `approvals.md`. Each package approval records, under `### Goals`, the goals it
+was aligned with: those its requirements cite, and every goal they serve.
+
+Every goal finding is a **note**, because a goal never blocks a release: `goals-awaiting-approval`,
+`goals-changed` (the goals moved since their approval), `goal-alignment-unrecorded` (a package
+approved before 2.1), and `goal-drift` (a package's aligned goals moved, naming the requirements
+citing them). `river diff` shows both, and `river graph` marks moved goals and everything below them
+suspect. **To resolve drift**, review whether the requirements still serve the moved goals ([`lifecycle.md`](lifecycle.md), *Goal movement*):
+revise them and recompose, or, if they still fit, have the package's owner re-approve it as it
+stands with `river approve --by <owner> <package>`. There is no separate realign step.
 
 ## Gradients
 

@@ -8,7 +8,7 @@ description: >-
   agent what to read before editing code, which changes need a person's approval, how to run
   River's checks, and where the full rules are.
 metadata:
-  river: "2.0"
+  river: "2.1"
 ---
 
 # River
@@ -98,9 +98,9 @@ codes:
 Both discovery notes become problems once `imports.md` contains the line `Discovery: complete`.
 Only a person adds that line, after working through every note.
 
-The `## Module` block in `river/README.md` declares the River version the module follows (`river 2.0`);
+The `## Module` block in `river/README.md` declares the River version the module follows (`river 2.1`);
 `river version` lists the ones the CLI supports. `river sum -w` rewrites `requirements/sums.md` after
-any edit to a source, `decisions.md`, or `precedence.md` (River 2.0); `river sum` prints what `-w` would write, or the `### Sums` block for named items. `river graph` (`--node <q>`, `--if-withdrawn <id>`, `--if-changed <id>`, `--format text|mermaid`) shows reachability from guardrails through criteria and requirements to goals before or after a change. `river upgrade` migrates a module and its skill copy to the latest version.
+any edit to a source, `decisions.md`, `precedence.md` (River 2.0), or a goal (River 2.1); `river sum` prints what `-w` would write, or the `### Sums` block for named items. `river graph` (`--node <q>`, `--if-withdrawn <id>`, `--if-changed <id>`, `--format text|mermaid`) shows reachability from guardrails through criteria and requirements to goals before or after a change. `river upgrade` migrates a module and its skill copy to the latest version. Goals may move ahead of requirements: a moved goal is a note (`goal-drift`, `goals-changed`), never a failure, and only the goals' owner runs `river approve --by <owner> goals` ([`references/goals.md`](references/goals.md), *Goal versions*).
 
 Install the CLI with `go install ./cmd/river` from a River checkout at the skill's pin (until River
 publishes a Go module path), and install or refresh the skill copy with `river install-skill`. Every code and command is in [`references/checks.md`](references/checks.md).

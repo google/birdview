@@ -1,24 +1,26 @@
 # Bindings
 
-How BirdView applies [README.md](README.md) and the River 2.0 skill at
+How BirdView applies [README.md](README.md) and the River 2.1 skill at
 [../.agents/skills/river/SKILL.md](../.agents/skills/river/SKILL.md). Where they leave a choice to
 the project, or where BirdView states a local amendment, this file records it and why.
 
-## River 2.0
+## River 2.1
 
 BirdView adopted specman on 2026-09-23, migrated to River 1.0 on 2026-10-15, and upgraded to
-**River 2.0** on 2026-11-10 ([decisions.riverV2PackagesAndSplits](requirements/decisions.md#riverv2packagesandsplits)).
+**River 2.0** on 2026-11-10 ([decisions.riverV2PackagesAndSplits](requirements/decisions.md#riverv2packagesandsplits)), then
+to **River 2.1** on 2026-11-12, a minor upgrade: re-pinned skill, `river 2.1` declared, goals summed in
+`sums.md`.
 
 | Area | State in BirdView |
 | --- | --- |
-| **Skill and module** | Skill installed at [../.agents/skills/river/](../.agents/skills/river/SKILL.md), pinned in [../.agents/skills/PROVENANCE.md](../.agents/skills/PROVENANCE.md); module declared in [README.md](README.md) (`module birdview`, `river 2.0`). |
-| **Layout** | `goals/`, `requirements/`, one package per source under `requirements/local/{product,tech}` or `requirements/imported/<origin>/<name>` ([decisions.nestedLayout](requirements/decisions.md#nestedlayout)), source sums in [requirements/sums.md](requirements/sums.md), and package approvals in [requirements/approvals.md](requirements/approvals.md). |
+| **Skill and module** | Skill installed at [../.agents/skills/river/](../.agents/skills/river/SKILL.md), pinned in [../.agents/skills/PROVENANCE.md](../.agents/skills/PROVENANCE.md); module declared in [README.md](README.md) (`module birdview`, `river 2.1`). |
+| **Layout** | `goals/`, `requirements/`, one package per source under `requirements/local/{product,tech}` or `requirements/imported/<origin>/<name>` ([decisions.nestedLayout](requirements/decisions.md#nestedlayout)), source and goal sums in [requirements/sums.md](requirements/sums.md), and package and goal-set approvals in [requirements/approvals.md](requirements/approvals.md). |
 | **Identifiers** | Descriptive camelCase, qualified by package outside their own file: `goals.*`, `product.*`, `tech.*`, `decisions.*`, `app.*`, `dataset.*`, `repo.*`; a transcribed source is its own package with exported names, [`inatapi.RequestRate`](requirements/imported/inaturalist.org/inatapi/inatapi.md#requestrate) ([decisions.descriptiveIdentifiers](requirements/decisions.md#descriptiveidentifiers)). |
 | **Composition** | [app](requirements/composed/internal/app/app.md), [dataset](requirements/composed/internal/dataset/dataset.md), and [repo](requirements/composed/internal/repo/repo.md) under `requirements/composed/internal/`, with criteria in each package's `acceptance.md` and guardrails in [conformance.md](conformance.md). |
 | **Checks** | `river check` plus BirdView's Go checks in `river/check/` (`go test ./river/check/`); see below. |
 | **Stage adoption** | All four adopted: **Requirements**, **Implementation**, **Verification**, and **Release** since 2026-10-23 (guardrails in [tech/release.md](requirements/local/tech/release.md); the deployment's probe, uptime check, alerting, and runbook live in the private `Sajmani/birdview-deploy`). |
 
-**Checks.** `river check` enforces River 2.0's structural, accounting, sums, approval,
+**Checks.** `river check` enforces River 2.1's structural, accounting, sums, approval,
 host/dependency discovery, and reachability rules. `river/check/` adds BirdView's stricter goal rule
 (`TestEveryLocalRequirementCitesAGoal`), active-issue rule (`TestActiveTodoHasIssue`), vendored
 hashes (`TestVendoredHashesMatch`), verbatim quotations (`TestQuotationsAreVerbatim`),
@@ -40,7 +42,7 @@ What this project declares, as the River skill asks of every adopter.
 | **Subject vocabulary** | Dotted paths, lowercase, e.g. `diagram.scale.mode`, `badge.contrast.ratio`, `dataset.join.key`. New subjects are added by the project owner. |
 | **Hard safety constraints** | Never commit anything under `fetched/`. Never commit the built dataset. Never access or process Wiley Online Library material, by any means including an AI agent ([decisions.ricklefsProhibited](requirements/decisions.md#ricklefsprohibited)). Never fetch or process anything from BirdLife's DataZone by any automated means (see `requirements/imports.md` and `todo.md`). |
 | **External systems** | Tests make no network requests. Any source fetch is exercised against a local fixture or an `httptest` server, never against the live publisher. |
-| **Approval authority** | Sameer — gates, waivers, amendments, source deviations, risk acceptances, and `river approve --by Sameer river`. |
+| **Approval authority** | Sameer — gates, waivers, amendments, source deviations, risk acceptances, `river approve --by Sameer river` for composed packages, and `river approve --by Sameer river goals` for the goal set. Goal movement is reported as notes (`goals-changed`, `goal-drift`), never failures. |
 | **Supported runtime** | Whatever the dependencies require ([tech.goVersionFollowsDeps](requirements/local/tech/delivery.md#goversionfollowsdeps)). No minimum Go version is maintained. |
 | **Source refresh cadence** | Annually. AviList, AOS, and eBird/Clements each revise on roughly yearly cycles, and [product.joinOnBinomial](requirements/local/product/dataset.md#joinonbinomial)'s synonym table depends on all three. |
 | **Existing docs** | `river/` owns requirements. `PROVENANCE` files under `river/requirements/imported/` own retrieval facts and hashes. A README, when written, owns usage instructions and duplicates neither. |

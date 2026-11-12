@@ -2,11 +2,12 @@ package sums
 
 # Sums
 
-Written by `river sum -w`, never by hand. One line per composition input, with the SHA-256
-of its text: each source item (`<package>.<identifier>`), each decisions.md entry
+Written by `river sum -w`, never by hand. One line per composition input and goal, with the
+SHA-256 of its text: each source item (`<package>.<identifier>`), each decisions.md entry
 (`decisions.<id>`), each row of precedence.md's tier table, with its rank (`precedence.<tier>`),
-and each row of its item table (`precedence.<package>.<identifier>`). An approval or a decision
-records, under `### Sums`, the lines it was decided against.
+each row of its item table (`precedence.<package>.<identifier>`), and each goal (`goals.<id>`, or
+`<package>.<id>` for an imported one). An approval or a decision records, under `### Sums` or
+`### Goals`, the lines it was decided against.
 
 ```
 decisions.abaSpeciesWithoutAvonet sha256:806db30015f72ec133f964a1cb70c146235ff5105d8f7805928625ce18b9045d
@@ -100,6 +101,20 @@ gbifterms.CiteDownloadDoi sha256:b388169399ab3eb6b918e8bd70fd70cc905ee3bdeaa9fed
 gbifterms.DataNotGuaranteed sha256:d16460d893bfa19364afa9988cd999b95142c0054a53e7d1c781df8fc3b90f13
 gbifterms.PublisherLicencesPrevail sha256:6ba420a09fbb25db656169540d8612b55a8a2213c41408086a3e9e8c8afaca2e
 gbifterms.RetainOwnershipIdentifier sha256:09647506f378ef1878820b53cc5fb9128ed3e852e26a5d160b857b86efc96fcf
+goals.flexibleComparison sha256:57792a030492bd26b2752e93ff66682406cd05c7989410170a4798a05b1f3fad
+goals.freedomToChange sha256:d79c821322b72d90a7438f1e964f0d71b306a4cf6f8fbd79e4b5ec864944a82f
+goals.giveBack sha256:d0eea2527de324508033cf74a21b8f65356c5a7e905559489070bb318b9b8753
+goals.goodDataCitizen sha256:c083ed3547d3e4177e8f8da50477feb30c643f0e3ebed7db73eaab82f1d2a90b
+goals.honestData sha256:518dbe3ccb32e4f4cd0c7554e5afc7846371c8d5f7a3517f0970277a91e3d889
+goals.localRelevance sha256:d4d590c0b80c94d5be6495a38451b7bf43d648bf8b02d28f1b742af23b07effd
+goals.maintainerPrivacy sha256:7df4f5484375b0aebdd7b33d5a5227de19aa392ef7612dc00f9c39b386d40784
+goals.openToEveryone sha256:a1bd981e784264f9d59624845b30b143a247c33c5f9e57f02c49c60a63b10cdc
+goals.rapidIteration sha256:1f98ada6322e1d5e9ad3d84943a5dd88eb6338653003b90053a0ea4abf9792a7
+goals.readerPrivacy sha256:05bd6fd26679de165189692176ded82c5b6d5f1763e7e30fcf08718ea3214343
+goals.secure sha256:c391e12696b7929b7c925ff97a177b9ad12c0b2b895e2cef6bd69d21429462dc
+goals.shapeNotOnlySize sha256:41ef03e0de88c7aa9be1604911bd2bb96509403733eda75e07270c5324b10899
+goals.shareableViews sha256:9f82c49c3d8eae675fc5362ea2a5f3126f63fd003b0f506389a3ea2b95fc688b
+goals.sizeIntuition sha256:77654a33bf4dfed2e2eb625edb70602bb6a941925a7552d6500b158078f6c578
 inatapi.AuthenticateOnlyWhenNecessary sha256:9488f0b159f69d4e7bc1bceddeca218343660976884eae873dde5ca7a29d54cc
 inatapi.IdAboveBeyondPageCap sha256:8cba9d556fc8f488a3d11b900a20e9d0e4f3bbc1a2349fe067a8043033c03065
 inatapi.JwtAuthorization sha256:b798f0627228febf713a6d8f14ebe86a06eab071d158ec31b64997014ae4108e
