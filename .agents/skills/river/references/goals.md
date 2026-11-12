@@ -47,9 +47,10 @@ Model a value (a principle nobody trades for gain and nobody finishes) as a root
 imported from the organization, not as a new kind of item. It is a graph, not a tree: a goal may
 serve several. The goal still never lists what serves it.
 
-`river check` fails a `Serves:` naming a goal no package declares (`goal-unknown-parent`), a live
-goal serving a withdrawn one (`goal-serves-withdrawn`), and goals serving each other in a cycle
-(`goal-cycle`); `river graph` draws the edges. A goal that a live goal serves counts as served, so a
+`river check` fails a `Serves:` naming a goal no package declares (`goal-unknown-parent`) and a live
+goal serving a withdrawn one (`goal-serves-withdrawn`); `river graph` draws the edges. **Cycles are
+fine:** goals often reinforce each other (honest data makes what you share worth reusing; sharing it
+lets others check it), so two goals may serve each other. A goal that a live goal serves counts as served, so a
 value cited only by goals is not counted unserved.
 
 ## Imported goals

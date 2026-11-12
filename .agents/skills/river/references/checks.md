@@ -72,7 +72,7 @@ the edits a tool can, writes them without committing, and lists what needs you. 
 | --- | --- |
 | 1.0 | River before versions. An approval in `decisions.md` records the package's hash (`Approves:`) |
 | 2.0 | `requirements/sums.md` and `requirements/approvals.md`; `## Composed from`; `*(excluded)*`; `### Sums` on decisions and approvals; per-item `precedence.md` rows; root `README.md` `## Module`; `river diff`, `approve`, `check --allow-unapproved`, `install-skill`, `upgrade`; strict failures for `awaiting-approval`, `misplaced-approval`, `bad-approval`, accounting, `covers-*`, `excluded-*`, `withdrawn-not-excluded`, `decision-missing-sums`, `exported-external-link`, `precedence-*`, and `skill-*` |
-| 2.1 | Goals serve goals (`Serves:`), imported goals under `goals/imported/`, goal lines in `sums.md`, `river approve goals`, `### Goals` on package approvals; failures `goal-cycle`, `goal-unknown-parent`, `goal-serves-withdrawn` (notes under 2.0); notes `goals-awaiting-approval`, `goals-changed`, `goal-alignment-unrecorded`, `goal-drift`, and `goal-withdrawn-cited` (a live requirement or gradient citing a withdrawn goal; a failure from the next major) |
+| 2.1 | Goals serve goals (`Serves:`), imported goals under `goals/imported/`, goal lines in `sums.md`, `river approve goals`, `### Goals` on package approvals; failures `goal-unknown-parent`, `goal-serves-withdrawn` (notes under 2.0); goal cycles allowed; notes `goals-awaiting-approval`, `goals-changed`, `goal-alignment-unrecorded`, `goal-drift`, and `goal-withdrawn-cited` (a live requirement or gradient citing a withdrawn goal; a failure from the next major) |
 
 **Record your own River version**: the skill's pin in its `PROVENANCE.md` and the layout here.
 River keeps no list of adopters.

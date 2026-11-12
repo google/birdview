@@ -6,7 +6,9 @@ Why BirdView exists: what it enables for its readers, for the community whose da
 for the people who build it. Requirements cite goals in a `Goals:` field; a goal never lists its
 requirements.
 
-The first eight goals serve readers, the next two the community, and the last four the project.
+The first eight goals serve readers, the next two the community, and the next four the project.
+The last two are root goals that the reader and community goals serve: the birders BirdView is
+for, and the sources whose data it shows. Goals cite the goals they serve in `Serves:`.
 
 ## sizeIntuition
 
@@ -14,11 +16,15 @@ The first eight goals serve readers, the next two the community, and the last fo
 
 See a bird's true size next to birds you already know.
 
+Serves: [goals.detailMindedBirders](#detailmindedbirders)
+
 ## shapeNotOnlySize
 
 **See how birds are built**
 
 See how birds differ in proportion and build, not only in size.
+
+Serves: [goals.detailMindedBirders](#detailmindedbirders)
 
 ## flexibleComparison
 
@@ -26,17 +32,23 @@ See how birds differ in proportion and build, not only in size.
 
 Compare any set of birds side by side, whether a family, a habitat, or a few you picked.
 
+Serves: [goals.sizeIntuition](#sizeintuition), [goals.shapeNotOnlySize](#shapenotonlysize), [goals.detailMindedBirders](#detailmindedbirders)
+
 ## localRelevance
 
 **Know what to expect where you are**
 
 Learn which birds you could meet in a place and season, and how often each one is reported.
 
+Serves: [goals.detailMindedBirders](#detailmindedbirders)
+
 ## honestData
 
 **Trust what you see**
 
 Know where each figure comes from, how certain it is, where sources disagree, and what is missing.
+
+Serves: [goals.detailMindedBirders](#detailmindedbirders), [goals.sourcesShowcased](#sourcesshowcased), [goals.giveBack](#giveback)
 
 ## openToEveryone
 
@@ -62,11 +74,15 @@ Use BirdView without being identified or tracked.
 
 Honor the terms of, and credit, every person and project whose data BirdView uses.
 
+Serves: [goals.sourcesShowcased](#sourcesshowcased)
+
 ## giveBack
 
 **Give back to the commons**
 
 Make what BirdView derives open for others to check, reuse, and improve.
+
+Serves: [goals.sourcesShowcased](#sourcesshowcased), [goals.honestData](#honestdata)
 
 ## rapidIteration
 
@@ -74,11 +90,15 @@ Make what BirdView derives open for others to check, reuse, and improve.
 
 Build, run, and test BirdView on one machine, without refetching its data.
 
+Serves: [goals.secure](#secure)
+
 ## freedomToChange
 
 **Free to change**
 
 Expose only what we mean to support, so everything else can change.
+
+Serves: [goals.secure](#secure), [goals.rapidIteration](#rapiditeration)
 
 ## secure
 
@@ -91,6 +111,20 @@ Keep BirdView's attack surface small and its fixes quick to ship.
 **Protect maintainers' privacy**
 
 Maintain BirdView without exposing anyone's personal details.
+
+## detailMindedBirders
+
+**Birders who love the details enjoy exploring birds' data**
+
+Birders who enjoy the measurements, proportions, and records behind birds find BirdView worth
+returning to and exploring.
+
+## sourcesShowcased
+
+**The people behind BirdView's data see it shown faithfully**
+
+The researchers and projects whose data BirdView uses, such as AVONET and GBIF, find it a faithful,
+well-credited viewer of their datasets.
 
 ## Non-goals
 

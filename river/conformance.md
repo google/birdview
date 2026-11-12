@@ -160,6 +160,7 @@ Watched failing: 2026-10-27, by the script's list without the banding code, by t
 Criterion: [repo.everyRequirementCitesGoal](requirements/composed/internal/repo/acceptance.md#everyrequirementcitesgoal)
 Guardrails: `river/check/birdview_test.go:TestEveryLocalRequirementCitesAGoal`
 Gates: yes, in `go test ./...` (CI and image build)
+Watched failing: 2026-11-12, by dropping [goals.sourcesShowcased](goals/goals.md#sourcesshowcased) from every `Serves:` line: the test reported that one goal is served by no active requirement, directly or through `Serves:`.
 Watched failing: 2026-10-16, by deleting `familyFilter`'s `Goals:` line.
 Watched failing: 2026-09-21, by deleting [tech.servesOnLocalhost](requirements/local/tech/delivery.md#servesonlocalhost)'s `Goals:` line: exit 1, `requirements with no Goals: field -> tech.servesOnLocalhost`.
 
