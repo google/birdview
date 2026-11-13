@@ -28,7 +28,10 @@ import (
 // nothing cites rather than failing them (River's goalsMayPrecedeRequirements
 // and requirementsMayPrecedeGoals). BirdView holds itself to both: every
 // active product and tech requirement cites a declared goal, and every
-// declared goal is cited by at least one active requirement.
+// declared goal is served: cited by at least one active requirement, or named
+// in the Serves: line of a goal that is itself served (River 2.1's goal
+// graph). Goal loops are allowed, so a loop no requirement reaches stays
+// unserved.
 //
 // A transcribed source's rules are exempt -- they are an imported source's,
 // not BirdView's to justify -- and so is a withdrawn requirement.
@@ -44,14 +47,23 @@ func TestEveryLocalRequirementCitesAGoal(t *testing.T) {
 	goalsField := regexp.MustCompile(`(?m)^Goals:[ \t]*(.+)$`)
 	linkTarget := regexp.MustCompile(`\]\([^)]*\)`)
 	goalRef := regexp.MustCompile(`\bgoals\.([a-z][A-Za-z0-9]*)\b`)
+	servesField := regexp.MustCompile(`(?m)^Serves:[ \t]*(.+)$`)
 
 	declared := map[string]bool{}
 	served := map[string]int{}
+	parents := map[string][]string{} // goal -> the goals its Serves: names
 	for _, gf := range goalFiles {
 		txt := read(t, gf)
 		for _, m := range h2.FindAllStringSubmatch(txt, -1) {
-			if !withdrawn.MatchString(section(txt, m[1])) {
-				declared[m[1]] = true
+			sec := section(txt, m[1])
+			if withdrawn.MatchString(sec) {
+				continue
+			}
+			declared[m[1]] = true
+			if sm := servesField.FindStringSubmatch(sec); sm != nil {
+				for _, r := range goalRef.FindAllStringSubmatch(linkTarget.ReplaceAllString(sm[1], "]"), -1) {
+					parents[m[1]] = append(parents[m[1]], r[1])
+				}
 			}
 		}
 	}
@@ -93,6 +105,21 @@ func TestEveryLocalRequirementCitesAGoal(t *testing.T) {
 	if activeReqs == 0 {
 		t.Fatal("no active local requirements parsed")
 	}
+	// A served goal serves the goals it names, transitively.
+	var queue []string
+	for g := range served {
+		queue = append(queue, g)
+	}
+	for len(queue) > 0 {
+		g := queue[0]
+		queue = queue[1:]
+		for _, p := range parents[g] {
+			if declared[p] && served[p] == 0 {
+				served[p]++
+				queue = append(queue, p)
+			}
+		}
+	}
 	var unserved []string
 	for g := range declared {
 		if served[g] == 0 {
@@ -101,7 +128,7 @@ func TestEveryLocalRequirementCitesAGoal(t *testing.T) {
 	}
 	sort.Strings(unserved)
 	if len(unserved) > 0 {
-		t.Errorf("%d goal(s) are cited by no active requirement (%v); BirdView requires every goal to be served",
+		t.Errorf("%d goal(s) are served by no active requirement, directly or through Serves: (%v); BirdView requires every goal to be served",
 			len(unserved), unserved)
 	}
 }

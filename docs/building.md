@@ -219,7 +219,7 @@ formats strings belongs in another package.
 **The requirements are normative and live in [`river/`](../river).** Code implements them; where
 this guide and `river/` disagree, `river/` wins.
 
-[`river/README.md`](../river/README.md) declares the River 2.0 module; the method copy lives at
+[`river/README.md`](../river/README.md) declares the River 2.1 module; the method copy lives at
 [`.agents/skills/river/`](../.agents/skills/river/SKILL.md). To make a change you need only the loop
 below.
 
@@ -227,9 +227,9 @@ below.
 
 | File | Contents |
 | --- | --- |
-| [`README.md`](../river/README.md) | the River 2.0 module declaration and directory index |
+| [`README.md`](../river/README.md) | the River 2.1 module declaration and directory index |
 | [`bindings.md`](../river/bindings.md) | how BirdView applies the method, and where it departs from it |
-| [`goals/`](../river/goals/goals.md) | why the project exists: fourteen goals, `goals.*` |
+| [`goals/`](../river/goals/goals.md) | why the project exists: sixteen goals, `goals.*` |
 | [`requirements/local/product/`](../river/requirements/local/product/product.md) | what it must do, one file per group: `product.*` |
 | [`requirements/local/tech/`](../river/requirements/local/tech/tech.md) | technical constraints, one file per group: `tech.*` |
 | [`requirements/composed/internal/app/`](../river/requirements/composed/internal/app/app.md) | every requirement the web application must meet, and its criteria (`app.*`) |

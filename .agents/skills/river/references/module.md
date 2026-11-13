@@ -15,14 +15,15 @@ river/
   conformance.md             what is built, against which version, and which criteria are met
   proposals.md               drafts awaiting a person, and open questions
   goals/                     package goals
+    imported/<import path>/  another module's goals, pinned, with PROVENANCE.md (2.1)
   gradients/                 package gradients
   requirements/
     README.md                what requirements/ holds
     imports.md               every imported source, with its pinned version
     precedence.md            standing rules: which source outranks which
     decisions.md             log of how each conflict and judgment was settled
-    approvals.md             approved version and covered sums per composed package, written by `river approve` (2.0)
-    sums.md                  a sum per input to composition, written by `river sum -w`, never by hand (2.0)
+    approvals.md             approved version and covered sums per composed package (2.0), and the goal set (2.1), written by `river approve`
+    sums.md                  a sum per input to composition (2.0) and per goal (2.1), written by `river sum -w`, never by hand
     local/<name>/            a source written here: one source, one package
     imported/<import path>/  another module's source, pinned, with PROVENANCE.md
     composed/
@@ -136,6 +137,12 @@ names one of them, and every row of `precedence.md`'s tables:
     product.alphaRule sha256:db2ea2c9…
     terms.RateLimit sha256:1a7a8758…
     ```
+
+From River 2.1, each package section also carries a `### Goals` block: the `sums.md` lines of the
+goals the package was aligned with when approved (those its requirements cite, and every goal they
+serve), so moved goals show as `goal-drift`. A `## goals` section, written only by `river approve
+--by <owner> goals`, approves the goal set: `Approves: goals, sha256:<hash>` over the goals' sum
+lines, with a `### Sums` block of every goal ([`goals.md`](goals.md), *Goal versions*).
 
 The commit that updates the entry identifies the approved version. A composed package is never
 edited by hand; a change is a recomposition and a new approval. Under River 2.0, strict `river

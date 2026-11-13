@@ -39,8 +39,8 @@ it running as a foreground or tracked background task; that holds the turn open.
 
 - Requirement first (statement first), then recompose (`composed/internal/{app,dataset,repo}`) and
   criteria, then code and `river/conformance.md`, in one commit.
-- Present `river diff river` for human review; run `river approve --by Sameer river` **only** when
-  Sameer approves (never self-approve).
+- Present `river diff river` for human review; run `river approve --by Sameer river` (or `... river goals` for
+  the goal set) **only** when Sameer approves (never self-approve).
 - **Watch every new check fail**, make the mutation fail loudly if its anchor is missing, and read
   the failure message.
 - A data-pipeline change updates [docs/pipeline.md](docs/pipeline.md) and re-renders it

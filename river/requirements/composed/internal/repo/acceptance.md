@@ -12,14 +12,16 @@ How each requirement in [repo.md](repo.md) is decided. Each criterion names what
 
 ## everyRequirementCitesGoal
 
-**Every requirement cites a declared goal, and every goal is cited**
+**Every requirement cites a declared goal, and every goal is served**
 
 Covers: [tech.bundleIsNormative](../../../local/tech/process.md#bundleisnormative)
 
 **Method:**
 Go test over the bundle. River's checker counts a requirement citing no goal and a goal nothing
 cites rather than failing them; BirdView is stricter, and `TestEveryLocalRequirementCitesAGoal`
-fails both, exempting withdrawn requirements and the rules transcribed from imported sources
+fails both, exempting withdrawn requirements and the rules transcribed from imported sources. A
+goal is served when an active requirement cites it or a served goal names it in `Serves:`, so a
+root goal that only other goals serve passes, and a goal loop no requirement reaches fails
 
 **This check cannot tell whether a requirement genuinely serves the goal it names.** Goals are not
 measurable by construction. That judgment belongs to Gate 1 and to review, and a green run here

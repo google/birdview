@@ -15,8 +15,8 @@ to River's checks is visible.
 | --- | --- |
 | `river check [--allow-unapproved] [module]` | Checks the River module (default `river/`), reporting every finding without early exit and exiting 1 on any problem; `--allow-unapproved` reports `awaiting-approval` and `stale-approval` as notes |
 | `river graph [--format text\|mermaid] [--node <q> \| --if-withdrawn <id> \| --if-changed <id>] [module]` | Shows the reachability graph (goals, requirements, criteria, guardrails, decisions), one node's neighborhood (`--node`), or the cascade of withdrawing (`--if-withdrawn`) or changing (`--if-changed`) a node |
-| `river diff [module] [<package>...]` | Summarizes what changed since each composed package's recorded approval (`awaiting approval`, `approved`, or changed files/inputs and `decision-review` notes) |
-| `river approve [--dry-run] --by <person> [module] [<package>...]` | Verifies `river check --allow-unapproved` has 0 problems, then records approval in `requirements/approvals.md` (`--dry-run` prints without writing) |
+| `river diff [module] [<package>...]` | Summarizes what changed since each composed package's recorded approval (`awaiting approval`, `approved`, or changed files/inputs and `decision-review` notes), and from River 2.1 the goal set against its approval and each package's moved goals (`river diff goals` for the goals alone) |
+| `river approve [--dry-run] --by <person> [module] [<package>...]` | Verifies `river check --allow-unapproved` has 0 problems, then records approval in `requirements/approvals.md` (`--dry-run` prints without writing); with no packages, every unapproved or stale one. `river approve --by <person> goals` approves the goal set (River 2.1), and only when named |
 | `river sum [module] [<item>...]` | Prints `requirements/sums.md` to stdout, or, given item names (`product.x`, `decisions.y`, `precedence.local`), prints the `### Sums` section a decision records for them |
 | `river sum -w [module]` | Writes `requirements/sums.md` (River 2.0). Never edit that file by hand |
 | `river install-skill [--origin <text>] [--pin <commit>] [repo]` | Installs or refreshes `.agents/skills/river/` and `.agents/skills/PROVENANCE.md` in `repo` (default `.`) |
@@ -52,7 +52,7 @@ at its root, as `river <major>.<minor>` beside `module`, the way `go.mod` declar
 
 ```
 module example.com/app
-river 2.0
+river 2.1
 ```
 
 The block holds `module` once, `river` at most once, blank lines and `//` comments; anything else
@@ -72,6 +72,7 @@ the edits a tool can, writes them without committing, and lists what needs you. 
 | --- | --- |
 | 1.0 | River before versions. An approval in `decisions.md` records the package's hash (`Approves:`) |
 | 2.0 | `requirements/sums.md` and `requirements/approvals.md`; `## Composed from`; `*(excluded)*`; `### Sums` on decisions and approvals; per-item `precedence.md` rows; root `README.md` `## Module`; `river diff`, `approve`, `check --allow-unapproved`, `install-skill`, `upgrade`; strict failures for `awaiting-approval`, `misplaced-approval`, `bad-approval`, accounting, `covers-*`, `excluded-*`, `withdrawn-not-excluded`, `decision-missing-sums`, `exported-external-link`, `precedence-*`, and `skill-*` |
+| 2.1 | Goals serve goals (`Serves:`), imported goals under `goals/imported/`, goal lines in `sums.md`, `river approve goals`, `### Goals` on package approvals; failures `goal-unknown-parent`, `goal-serves-withdrawn` (notes under 2.0); goal cycles allowed; notes `goals-awaiting-approval`, `goals-changed`, `goal-alignment-unrecorded`, `goal-drift`, and `goal-withdrawn-cited` (a live requirement or gradient citing a withdrawn goal; a failure from the next major) |
 
 **Record your own River version**: the skill's pin in its `PROVENANCE.md` and the layout here.
 River keeps no list of adopters.

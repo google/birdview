@@ -89,7 +89,9 @@ feedback that is not always about a defect: the answer to an opportunity may be 
 **Goal movement has three shapes and only one invalidates anything.** A goal **added** needs new
 requirements and touches none. A goal **expanded** means the requirements serving it still serve
 it and no longer suffice. A goal **changed or withdrawn** puts every requirement citing it in
-doubt. Treating all movement as invalidation makes teams reluctant to move goals at all.
+doubt. Treating all movement as invalidation makes teams reluctant to move goals at all. From
+River 2.1 the checker sees the movement without blocking on it: a changed or withdrawn goal is a
+`goal-drift` note on every package aligned with it ([`goals.md`](goals.md), *Goal versions*).
 
 **Realign by re-citing, not by editing.** When goals move, and from time to time regardless, cite
 every requirement afresh rather than adjusting its old `Goals:` line, and mark the citations that

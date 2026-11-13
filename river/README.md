@@ -1,6 +1,6 @@
 # River module
 
-This repository's goals, requirements, and the records River keeps about them. The River 2.0 skill
+This repository's goals, requirements, and the records River keeps about them. The River 2.1 skill
 lives at [`../.agents/skills/river/`](../.agents/skills/river/SKILL.md) (pinned in
 [`../.agents/skills/PROVENANCE.md`](../.agents/skills/PROVENANCE.md)).
 
@@ -18,5 +18,5 @@ lives at [`../.agents/skills/river/`](../.agents/skills/river/SKILL.md) (pinned 
 
 ```
 module birdview
-river 2.0
+river 2.1
 ```
