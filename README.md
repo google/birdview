@@ -1,5 +1,9 @@
 # BirdView
 
+> **This repository is archived. Development has moved to
+> [github.com/Sajmani/birdview](https://github.com/Sajmani/birdview)**, where issues and pull
+> requests are welcome. The site is unchanged at [birdview.site](https://birdview.site).
+
 **How big is that bird, really?**
 
 BirdView draws North American birds as stick figures — bill, head, neck, body, tail, and a wing
